@@ -1,0 +1,30 @@
+{
+  "name": "react-sfml",
+  "version": "0.0.1",
+  "description": "Adding react to SFML library",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "yarn build && cd react-sfml/native && cmake . && make && ./Application"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/react": "^16.9.18",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "core-js": "3.6.4",
+    "react": "^16.12.0",
+    "react-reconciler": "^0.24.0",
+    "regenerator": "^0.14.2"
+  }
+}
