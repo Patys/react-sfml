@@ -1,7 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 
-import { AppRegistry } from '../react-sfml/index';
+import { AppRegistry } from '../react-sfml';
 
 class App extends React.Component {
   render() {

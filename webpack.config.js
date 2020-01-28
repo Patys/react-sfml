@@ -18,15 +18,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
-    library: 'PatysSFML',
+    library: 'react-sfml',
     libraryTarget: 'this',
-  },
-  externals: {
-    lodash: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'react',
-      root: 'react',
-    },
-  },
+  }
 };
