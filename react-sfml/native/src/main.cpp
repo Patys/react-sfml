@@ -47,8 +47,7 @@ static duk_ret_t SFML_CREATE_ELEMENT(duk_context *ctx) {
     return 0;
 }
 
-void runJavascriptEngine() {
-  duk_context *ctx = duk_create_heap_default();
+void runJavascriptEngine(duk_context *ctx) {
 
   if (!ctx) {
     printf("Failed to create a Duktape heap.\n");
@@ -75,9 +74,11 @@ void runJavascriptEngine() {
 
 int main(int argc, const char *argv[])
 {
+  duk_context *ctx = duk_create_heap_default();
+
   engine = new Engine();
-  std::thread t1(runJavascriptEngine);
-  engine->runSFML();
+  std::thread t1(runJavascriptEngine, ctx);
+  engine->runSFML(ctx);
 
   t1.join();
   return 0;

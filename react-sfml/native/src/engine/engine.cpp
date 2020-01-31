@@ -1,6 +1,8 @@
 #include "./engine.h"
 
-void Engine::runSFML() {
+void Engine::runSFML(duk_context *_ctx) {
+  ctx = _ctx;
+
   if (mainWindow == nullptr)
       mainWindow = new sf::RenderWindow(sf::VideoMode(800, 600), "Game");
 
