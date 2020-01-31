@@ -24,9 +24,10 @@ const hostConfig = {
   createInstance: (type, newProps, rootContainerInstance, _currentHostContext, workInProgress) => {
     // Here we add elements to the app
     const element = { type };
-    // console.log(newProps.x);
-    // console.log(newProps.y);
-    SFML_CREATE_ELEMENT(newProps.width, newProps.height, newProps.x, newProps.y);
+
+    if (type === 'Box') {
+      SFML_CREATE_ELEMENT(newProps.width, newProps.height, newProps.x, newProps.y);
+    }
 
     return element;
   },
