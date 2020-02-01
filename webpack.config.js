@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.tsx',
+  entry: './react-sfml/runner.ts',
   module: {
     rules: [
       {
@@ -18,7 +18,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
-    library: 'react-sfml',
-    libraryTarget: 'this',
+    library: 'reactsfml',
+    libraryTarget: 'var',
   }
 };

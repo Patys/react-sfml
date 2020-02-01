@@ -44,6 +44,9 @@ static duk_ret_t SFML_CREATE_ELEMENT(duk_context *ctx) {
     int x = duk_get_int(ctx, -2);
     int y = duk_get_int(ctx, -1);
     engine->createCircle(width, height, x, y);
+    // TODO: get element id and retrun to JS
+    // duk_push_int(ctx, 123);
+    // return 1;
     return 0;
 }
 

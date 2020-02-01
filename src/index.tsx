@@ -1,8 +1,17 @@
 import React from 'react';
 
-import { AppRegistry, Box } from '../react-sfml';
+import { AppRegistry, Box, Keyboard } from '../react-sfml';
 
 class App extends React.Component {
+  constructor(props: any) {
+    super(props)
+    Keyboard.subscribe('onKeyPress', this.onKeyPress, this);
+  }
+
+  onKeyPress(key: string) {
+    console.log(key);
+  }
+
   render() {
     return (
       <>
