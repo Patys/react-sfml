@@ -35,8 +35,9 @@ void Engine::runSFML(duk_context *_ctx) {
       }
     }
     mainWindow->clear();
-    for( size_t i = 0; i < boxes.size(); i++ ) {
-      mainWindow->draw(boxes[i]);
+    for(auto& box: boxes)
+    {
+      mainWindow->draw(box.second);
     }
     mainWindow->display();
   }
@@ -45,5 +46,6 @@ void Engine::runSFML(duk_context *_ctx) {
 void Engine::createBox(int width, int height, int x, int y) {
   sf::RectangleShape shape(sf::Vector2f(width, height));
   shape.setPosition(x, y);
-  boxes.push_back(shape);
+  // TODO: fix this when we have removing elements
+  boxes[boxes.size()] = shape;
 }

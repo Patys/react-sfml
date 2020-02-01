@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <map>
 #include "../../duktape/duktape.h"
 
 class Engine {
@@ -9,5 +9,5 @@ public:
 private:
   sf::RenderWindow *mainWindow;
   duk_context *ctx;
-  std::vector <sf::RectangleShape> boxes;
+  std::map <unsigned int, sf::RectangleShape> boxes;
 };
