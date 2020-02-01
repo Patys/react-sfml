@@ -1,4 +1,5 @@
 // @ts-nocheck
+import isEqual from 'lodash/isEqual';
 import ReactReconciler from 'react-reconciler';
 import { traceWrap } from './utils/traceWrap';
 
@@ -27,7 +28,7 @@ const hostConfig = {
 
     if (type === 'Box') {
       const id = SFML_CREATE_ELEMENT(newProps.width, newProps.height, newProps.x, newProps.y);
-      console.log(id);
+      element.id = id;
     }
 
     return element;
@@ -43,7 +44,7 @@ const hostConfig = {
     // parent.appendChild(child);
   },
   finalizeInitialChildren: (element, type, props) => {},
-  supportsMutation: false,
+  supportsMutation: true,
   appendChildToContainer: (parent, child) => {
     // parent.appendChild(child);
   },
@@ -52,6 +53,9 @@ const hostConfig = {
   },
   commitUpdate(element, updatePayload, type, oldProps, newProps) {
     // TODO: upodate SFML views
+    if (type === 'Box' && !isEqual(oldProps, newProps)) {
+      SFML_UPDATE_ELEMENT(element.id, newProps);
+    }
 
     // Object.keys(newProps).forEach(propName => {
     //   const propValue = newProps[propName];

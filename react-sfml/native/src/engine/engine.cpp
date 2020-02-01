@@ -42,6 +42,12 @@ unsigned int Engine::createBox(int width, int height, int x, int y) {
   return id;
 }
 
+void Engine::updateBoxSize(unsigned int id, int newWidth, int newHeight) {
+  auto shape = boxes.find(id);
+  shape->second.setSize(sf::Vector2f(newWidth, newHeight));
+}
+
+
 void Engine::handleKeyboard(const sf::Keyboard::Key key) {
   // Send key to JS
   duk_push_global_object(ctx);

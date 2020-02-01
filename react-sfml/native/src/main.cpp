@@ -48,6 +48,32 @@ static duk_ret_t SFML_CREATE_ELEMENT(duk_context *ctx) {
     return 1;
 }
 
+static duk_ret_t SFML_UPDATE_ELEMENT(duk_context *ctx) {
+    unsigned int id = duk_get_int(ctx, -2);
+    int height = 0;
+    int width = 0;
+    printf("ID: %i\n", id);
+    duk_enum(ctx, -1, DUK_ENUM_INCLUDE_NONENUMERABLE);
+    while (duk_next(ctx, -1, 1 /*get_value*/)) {
+      std::string key = duk_safe_to_string(ctx, -2);
+      auto value = duk_get_int(ctx, -1);
+      if (key == "width")
+      {
+        width = value;
+      }
+      if (key == "height")
+      {
+        height = value;
+      }
+      duk_pop_2(ctx);
+    }
+    duk_pop(ctx);
+    engine->updateBoxSize(id, width, height);
+    // unsigned int id = engine->createBox(width, height, x, y);
+    // duk_push_int(ctx, id);
+    return 0;
+}
+
 void runJavascriptEngine(duk_context *ctx) {
 
   if (!ctx) {
@@ -65,6 +91,11 @@ void runJavascriptEngine(duk_context *ctx) {
   duk_put_prop_string(ctx, -2, "SFML_CREATE_ELEMENT");
   duk_pop(ctx);  /* ignore result */
 
+  duk_push_global_object(ctx);
+  duk_push_c_function(ctx, SFML_UPDATE_ELEMENT, DUK_VARARGS);
+  duk_put_prop_string(ctx, -2, "SFML_UPDATE_ELEMENT");
+  duk_pop(ctx);  /* ignore result */
+
   push_file_as_string(ctx, "../../build/bundle.js");
 
   if (duk_peval(ctx) != 0) {
@@ -79,8 +110,9 @@ int main(int argc, const char *argv[])
 
   engine = new Engine();
   std::thread t1(runJavascriptEngine, ctx);
-  engine->runSFML(ctx);
 
+  engine->runSFML(ctx);
+  
   t1.join();
   return 0;
 }
