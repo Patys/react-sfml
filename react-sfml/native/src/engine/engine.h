@@ -5,7 +5,7 @@
 class Engine {
 public:
   void runSFML(duk_context *_ctx);
-  void createBox(int, int, int, int);
+  unsigned int createBox(int, int, int, int);
 private:
   sf::RenderWindow *mainWindow;
   duk_context *ctx;

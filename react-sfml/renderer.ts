@@ -26,7 +26,8 @@ const hostConfig = {
     const element = { type };
 
     if (type === 'Box') {
-      SFML_CREATE_ELEMENT(newProps.width, newProps.height, newProps.x, newProps.y);
+      const id = SFML_CREATE_ELEMENT(newProps.width, newProps.height, newProps.x, newProps.y);
+      console.log(id);
     }
 
     return element;

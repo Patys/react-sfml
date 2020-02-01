@@ -43,9 +43,11 @@ void Engine::runSFML(duk_context *_ctx) {
   }
 }
 
-void Engine::createBox(int width, int height, int x, int y) {
+unsigned int Engine::createBox(int width, int height, int x, int y) {
   sf::RectangleShape shape(sf::Vector2f(width, height));
   shape.setPosition(x, y);
   // TODO: fix this when we have removing elements
-  boxes[boxes.size()] = shape;
+  unsigned int id = boxes.size();
+  boxes[id] = shape;
+  return id;
 }
