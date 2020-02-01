@@ -5,9 +5,9 @@
 class Engine {
 public:
   void runSFML(duk_context *_ctx);
-  void createCircle(int, int, int, int);
+  void createBox(int, int, int, int);
 private:
   sf::RenderWindow *mainWindow;
   duk_context *ctx;
-  std::vector <sf::RectangleShape> circles;
+  std::vector <sf::RectangleShape> boxes;
 };

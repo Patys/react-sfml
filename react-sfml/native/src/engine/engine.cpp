@@ -35,15 +35,15 @@ void Engine::runSFML(duk_context *_ctx) {
       }
     }
     mainWindow->clear();
-    for( size_t i = 0; i < circles.size(); i++ ) {
-      mainWindow->draw(circles[i]);
+    for( size_t i = 0; i < boxes.size(); i++ ) {
+      mainWindow->draw(boxes[i]);
     }
     mainWindow->display();
   }
 }
 
-void Engine::createCircle(int width, int height, int x, int y) {
+void Engine::createBox(int width, int height, int x, int y) {
   sf::RectangleShape shape(sf::Vector2f(width, height));
   shape.setPosition(x, y);
-  circles.push_back(shape);
+  boxes.push_back(shape);
 }
