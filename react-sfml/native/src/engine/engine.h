@@ -10,4 +10,6 @@ private:
   sf::RenderWindow *mainWindow;
   duk_context *ctx;
   std::map <unsigned int, sf::RectangleShape> boxes;
+
+  void handleKeyboard(const sf::Keyboard::Key key);
 };

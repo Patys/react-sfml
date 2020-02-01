@@ -16,17 +16,7 @@ void Engine::runSFML(duk_context *_ctx) {
     {
       if (event.type == sf::Event::KeyPressed)
       {
-        // TODO: move this code to separate function
-        // Send key to JS
-        duk_push_global_object(ctx);
-        duk_get_global_string(ctx, "reactsfml");
-        duk_get_prop_string(ctx, -1, "SFML_KEY_PRESSED");
-        duk_push_string(ctx, Keyboard::getKeyName(event.key.code));
-
-        if (duk_pcall(ctx, 1) != 0) {
-            printf("Error: %s\n", duk_safe_to_string(ctx, -1));
-        }
-        duk_pop(ctx);  /* pop result/error */
+        handleKeyboard(event.key.code);
       }
       if(event.type == sf::Event::Closed)
       {
@@ -50,4 +40,17 @@ unsigned int Engine::createBox(int width, int height, int x, int y) {
   unsigned int id = boxes.size();
   boxes[id] = shape;
   return id;
+}
+
+void Engine::handleKeyboard(const sf::Keyboard::Key key) {
+  // Send key to JS
+  duk_push_global_object(ctx);
+  duk_get_global_string(ctx, "reactsfml");
+  duk_get_prop_string(ctx, -1, "SFML_KEY_PRESSED");
+  duk_push_string(ctx, Keyboard::getKeyName(key));
+
+  if (duk_pcall(ctx, 1) != 0) {
+      printf("Error: %s\n", duk_safe_to_string(ctx, -1));
+  }
+  duk_pop(ctx);  /* pop result/error */
 }
